@@ -32,6 +32,7 @@ export default class DislikeController implements DislikeControllerI {
      * @param {Express} app Express instance to declare the RESTful Web service
      * API
      * @return TuitController
+     * @return TuitController
      */
     public static getInstance = (app: Express): DislikeController => {
         if(DislikeController.dislikeController === null) {
@@ -88,6 +89,7 @@ export default class DislikeController implements DislikeControllerI {
      * database
      */
     userTogglesTuitDislikes = async (req: Request, res: Response) => {
+        console.log('dislike triggered');
         const dislikeDao = DislikeController.dislikeDao;
         const tuitDao = DislikeController.tuitDao;
         const uid = req.params.uid;
@@ -110,6 +112,7 @@ export default class DislikeController implements DislikeControllerI {
             await tuitDao.updateDislikes(tid, tuit.stats);
             res.sendStatus(200);
         } catch (e) {
+            console.log(e);
             res.sendStatus(404);
         }
     }

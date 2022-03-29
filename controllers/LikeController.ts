@@ -88,6 +88,8 @@ export default class LikeController implements LikeControllerI {
      * database
      */
     userTogglesTuitLikes = async (req: Request, res: Response) => {
+        console.log('like triggered');
+
         const likeDao = LikeController.likeDao;
         const tuitDao = LikeController.tuitDao;
         const uid = req.params.uid;
