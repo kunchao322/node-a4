@@ -33,8 +33,8 @@ const session = require("express-session");
 // // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
 // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
 
-// const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.l3k3n.mongodb.net/TUITER?retryWrites=true&w=majority`;
-const connectionString = `mongodb+srv://kunchao322:DPd5UqB0mmCTmG0x@cluster0.l3k3n.mongodb.net/TUITER?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.l3k3n.mongodb.net/TUITER?retryWrites=true&w=majority`;
+// const connectionString = `mongodb+srv://kunchao322:DPd5UqB0mmCTmG0x@cluster0.l3k3n.mongodb.net/TUITER?retryWrites=true&w=majority`;
 mongoose.connect(connectionString);
 
 const app = express();
