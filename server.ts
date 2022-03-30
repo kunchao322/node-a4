@@ -22,6 +22,8 @@ import mongoose from "mongoose";
 import GroupController from "./controllers/GroupController";
 const cors = require("cors");
 const session = require("express-session");
+import dotenv from "dotenv";
+dotenv.config();
 
 // build the connection string
 // const PROTOCOL = "mongodb+srv";
