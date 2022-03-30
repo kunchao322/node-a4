@@ -22,6 +22,8 @@ import mongoose from "mongoose";
 import GroupController from "./controllers/GroupController";
 const cors = require("cors");
 const session = require("express-session");
+import dotenv from "dotenv";
+dotenv.config();
 
 // build the connection string
 // const PROTOCOL = "mongodb+srv";
@@ -40,22 +42,22 @@ mongoose.connect(connectionString);
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    // origin: true
+    origin: process.env.CORS_ORIGIN
 }));
 
-const SECRET = 'process.env.SECRET';
 let sess = {
-    secret: SECRET,
+    secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: {
-        secure: false
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === "production",
     }
 }
 
-if (process.env.ENVIRONMENT === 'PRODUCTION') {
+if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
 }
 
 app.use(session(sess))
