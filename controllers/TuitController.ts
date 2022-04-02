@@ -76,9 +76,12 @@ export default class TuitController implements TuitControllerI {
      */
     findAllTuitsByUser = (req: Request, res: Response) => {
         // @ts-ignore
-        let userId = req.params.uid === "my" && req.session['profile'] ?
+        let userId = req.params.uid === "me" && req.session['profile'] ?
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
+        if(userId === 'me'){
+            res.sendStatus(403);
+        }
         TuitController.tuitDao.findAllTuitsByUser(userId)
             .then((tuits: Tuit[]) => res.json(tuits));
     }
@@ -93,12 +96,13 @@ export default class TuitController implements TuitControllerI {
      */
     createTuitByUser = (req: Request, res: Response) => {
         // @ts-ignore
-        let userId = req.params.uid === "my" && req.session['profile'] ?
+        let userId = req.params.uid === "me" && req.session['profile'] ?
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
-
         console.log(userId);
-        
+        if(userId === 'me'){
+            res.sendStatus(403);
+        }
         TuitController.tuitDao.createTuitByUser(userId, req.body)
             .then((tuit: Tuit) => res.json(tuit));
     }

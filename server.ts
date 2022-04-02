@@ -49,6 +49,7 @@ app.use(cors({
 let sess = {
     secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
+    proxy: true,
     resave: true,
     cookie: {
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
